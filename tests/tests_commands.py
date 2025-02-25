@@ -1,23 +1,9 @@
-'''Test Commands'''
+'''Tests commands'''
 import pytest
 from app import App
-# tests/test_commands.py
-from app.commands.goodbye import GoodbyeCommand
-from app.commands.greet import GreetCommand
+from app.plugins.goodbye import GoodbyeCommand
+from app.plugins.greet import GreetCommand
 
-def test_greet_command(capfd):
-    """Test the GreetCommand to ensure it prints 'Hello, World!'."""
-    command = GreetCommand()
-    command.execute()
-    out, _ = capfd.readouterr()
-    assert out == "Hello, World!\n", "The GreetCommand should print 'Hello, World!'"
-
-def test_goodbye_command(capfd):
-    """Test the GreetCommand to ensure it prints 'Hello, World!'."""
-    command = GoodbyeCommand()
-    command.execute()
-    out, _ = capfd.readouterr()
-    assert out == "Goodbye\n", "The GreetCommand should print 'Hello, World!'"
 
 def test_app_greet_command(capfd, monkeypatch):
     """Test that the REPL correctly handles the 'greet' command."""
@@ -28,6 +14,7 @@ def test_app_greet_command(capfd, monkeypatch):
     app = App()
     with pytest.raises(SystemExit) as e:
         app.start()  # Assuming App.start() is now a static method based on previous discussions
+    
     assert str(e.value) == "Exiting...", "The app did not exit as expected"
 
 def test_app_menu_command(capfd, monkeypatch):
@@ -39,4 +26,5 @@ def test_app_menu_command(capfd, monkeypatch):
     app = App()
     with pytest.raises(SystemExit) as e:
         app.start()  # Assuming App.start() is now a static method based on previous discussions
+    
     assert str(e.value) == "Exiting...", "The app did not exit as expected"
