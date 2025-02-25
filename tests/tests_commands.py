@@ -1,6 +1,7 @@
 '''Commands for testing'''
 import pytest
 from app import App
+
 def test_app_greet_command(capfd, monkeypatch):
     """Test that the REPL correctly handles the 'greet' command."""
     # Simulate user entering 'greet' followed by 'exit'
